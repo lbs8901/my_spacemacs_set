@@ -36,17 +36,16 @@ Scroll 설정
   dotspacemacs-smooth-scrolling ni
   dotspacemacs-additional-packages '(sublimity)
   
-  * dotspacemacs/user-init
+  * dotspacemacs/user-config
   (require 'sublimity)
   (require 'sublimity-scroll)
   ;; (require 'sublimity-map)
   ;; (require 'sublimity-attractive)
-  
+  (sublimity-mode t)
+
   * bottom
   (setq scroll-step           1
       scroll-conservatively 10000)
-
-  
   </code>
 </pre>
 
