@@ -100,8 +100,14 @@ hot-key 설정
 (define-key global-map (kbd "s-<up>")       'scroll-down)
 (define-key global-map (kbd "s-<down>")     'scroll-up)
 
+(defun custom-indent-newline ()
+  (interactive)
+  (default-indent-new-line)
+  (indent-relative)
+  )
+
 ;; RET indent
-(global-set-key (kbd "RET") 'default-indent-new-line`)
+(define-key global-map (kbd "RET") 'custom-indent-newline)
 
 ;; search set
 (define-key global-map (kbd "C-F") 'helm-projectile-ag)
