@@ -52,11 +52,11 @@ dotspacemacs-additional-packages '(sublimity)
 =============
 
 <pre>
-;;disable backup
-(setq backup-inhibited t)
+
+;; backup, auto save disable
 (setq make-backup-files nil)
-;;disable auto save
 (setq auto-save-default nil)
+(setq create-lockfiles nil)
 
 ;; back tab func
 (defun un-indent-by-removing-4-spaces ()
@@ -89,12 +89,27 @@ dotspacemacs-additional-packages '(sublimity)
 
 ;; redisplay
 (setq redisplay-dont-pause t)
-
-;; s-left, s-right
-(global-set-key (kbd "<s-left>") 'beginning-of-line-text)
-(global-set-key (kbd "<s-right>") 'end-of-line)
-(global-set-key (kbd "RET") 'default-indent-new-line`)
 </pre>
+
+hot-key 설정
+=============
+<pre>
+;; s-left, s-right
+(define-key global-map (kbd "s-<left>")     'beginning-of-line-text)
+(define-key global-map (kbd "s-<right>")    'end-of-line)
+(define-key global-map (kbd "s-<up>")       'scroll-down)
+(define-key global-map (kbd "s-<down>")     'scroll-up)
+
+;; RET indent
+(global-set-key (kbd "RET") 'default-indent-new-line`)
+
+;; search set
+(define-key global-map (kbd "C-F") 'helm-projectile-ag)
+(global-set-key (kbd "C-x C-f") 'helm-for-files)
+(define-key global-map (kbd "C-,") 'helm-projectile)
+
+</pre>
+
 
 PHP 설정
 =============
