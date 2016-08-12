@@ -107,7 +107,8 @@ hot-key 설정
   )
 
 ;; RET indent
-(define-key global-map (kbd "RET") 'custom-indent-newline)
+(define-key global-map (kbd "RET") 'default-indent-new-line)
+(define-key global-map (kbd "<C-return>") 'custom-indent-newline)
 
 ;; search set
 (define-key global-map (kbd "C-F") 'helm-projectile-ag)
