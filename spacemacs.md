@@ -141,6 +141,10 @@ there's a region, all lines that region covers will be duplicated."
 
 </pre>
 
+additional package 설정
+=============
+* sx : Stack Exchange for Emacs
+
 
 PHP 설정
 =============
