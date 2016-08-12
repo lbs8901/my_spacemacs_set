@@ -137,8 +137,7 @@ there's a region, all lines that region covers will be duplicated."
         (setq end (point)))
       (goto-char (+ origin (* (length region) arg) arg)))))
 
-(global-unset-key "\C-d")
-(global-set-key (kbd "C-d") 'duplicate-current-line-or-region)
+(global-set-key (kbd "s-d") 'duplicate-current-line-or-region)
 
 </pre>
 
