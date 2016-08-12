@@ -24,12 +24,20 @@ Layer 설정
    )
 </pre>
 
-
 Scroll 설정
 =============
 <pre>
 * basic config
 dotspacemacs-smooth-scrolling ni
+
+* bottom
+(setq scroll-step           1
+    scroll-conservatively 10000)
+</pre>
+
+sublimity 설정
+=============
+<pre>
 dotspacemacs-additional-packages '(sublimity)
 
 * dotspacemacs/user-config
@@ -38,10 +46,6 @@ dotspacemacs-additional-packages '(sublimity)
 ;; (require 'sublimity-map)
 ;; (require 'sublimity-attractive)
 (sublimity-mode t)
-
-* bottom
-(setq scroll-step           1
-    scroll-conservatively 10000)
 </pre>
 
 기타 설정
