@@ -126,6 +126,7 @@ dotspacemacs-additional-packages '(sublimity)
           (lambda ()
             (add-hook 'c-special-indent-hook 'unindent-closure)))
 
+(global-set-key (kbd "RET") 'default-indent-new-line`)
 </pre>
 
 PHP 설정
