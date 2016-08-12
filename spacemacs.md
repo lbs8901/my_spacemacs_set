@@ -51,6 +51,8 @@ Scroll 설정
 
 기타 설정
 =============
+
+<pre>
 ;;disable backup
 (setq backup-inhibited t)
 (setq make-backup-files nil)
@@ -92,7 +94,7 @@ Scroll 설정
 ;; s-left, s-right
 (global-set-key (kbd "<s-left>") 'beginning-of-line-text)
 (global-set-key (kbd "<s-right>") 'end-of-line)
-
+</pre>
 
 PHP 설정
 =============
