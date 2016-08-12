@@ -4,11 +4,6 @@ Layer 설정
   <code>
    dotspacemacs-configuration-layers
    '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
      emacs-lisp
@@ -39,13 +34,21 @@ Scroll 설정
 =============
 <pre>
   <code>
+  
+  * basic config
   dotspacemacs-smooth-scrolling ni
   dotspacemacs-additional-packages '(sublimity)
   
+  * dotspacemacs/user-init
   (require 'sublimity)
   (require 'sublimity-scroll)
   ;; (require 'sublimity-map)
-  (require 'sublimity-attractive)
+  ;; (require 'sublimity-attractive)
+  
+  * bottom
+  (setq scroll-step           1
+      scroll-conservatively 10000)
+
   
   </code>
 </pre>
