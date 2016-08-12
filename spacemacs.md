@@ -1,52 +1,47 @@
 Layer 설정
 ============
 <pre>
-  <code>
-   dotspacemacs-configuration-layers
-   '(
-     auto-completion
-     better-defaults
-     emacs-lisp
-     osx
-     php
-     git
-     markdown
-     org
-     javascript
-     html
-     sql
-     gtags
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
-     spell-checking
-     syntax-checking
-     version-control
-     )
-  </code>
+ dotspacemacs-configuration-layers
+ '(
+   auto-completion
+   better-defaults
+   emacs-lisp
+   osx
+   php
+   git
+   markdown
+   org
+   javascript
+   html
+   sql
+   gtags
+   (shell :variables
+          shell-default-height 30
+          shell-default-position 'bottom)
+   spell-checking
+   syntax-checking
+   version-control
+   )
 </pre>
 
 
 Scroll 설정
 =============
 <pre>
-  <code>
-  
-  * basic config
-  dotspacemacs-smooth-scrolling ni
-  dotspacemacs-additional-packages '(sublimity)
-  
-  * dotspacemacs/user-config
-  (require 'sublimity)
-  (require 'sublimity-scroll)
-  ;; (require 'sublimity-map)
-  ;; (require 'sublimity-attractive)
-  (sublimity-mode t)
+* basic config
+dotspacemacs-smooth-scrolling ni
+dotspacemacs-additional-packages '(sublimity)
 
-  * bottom
-  (setq scroll-step           1
-      scroll-conservatively 10000)
-  </code>
+* dotspacemacs/user-config
+(require 'sublimity)
+(require 'sublimity-scroll)
+;; (require 'sublimity-map)
+;; (require 'sublimity-attractive)
+(sublimity-mode t)
+
+* bottom
+(setq scroll-step           1
+    scroll-conservatively 10000)
 </pre>
 
 기타 설정
