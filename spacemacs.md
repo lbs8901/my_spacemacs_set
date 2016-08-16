@@ -145,6 +145,10 @@ additional package 설정
 =============
 * sx : Stack Exchange for Emacs
 
+asepll 설정
+=============
+* brew install aspell --with-lang-en
+
 
 PHP 설정
 =============
