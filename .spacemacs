@@ -41,13 +41,13 @@ values."
      spell-checking
      syntax-checking
      version-control
-     dockerfilex
+     dockerfile
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(sx)
+   dotspacemacs-additional-packages '(sx quelpa)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -67,7 +67,7 @@ values."
    ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
-   ;; This variable has no effect if Emacs is launched with the parameter
+ ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
    dotspacemacs-elpa-https t
@@ -113,8 +113,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   dotspacemacs-default-font '("Bitstream Vera Sans Mono"
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -256,14 +256,15 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; (require 'restman)
+  ;; restman dev package
+  (quelpa '(restman :fetcher github :repo "lbs8901/restman"))
+
+  (require 'restman)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-
-;; font
-(set-default-font "Bitstream Vera Sans Mono 15")
 
 ;; backup, auto save disable
 (setq make-backup-files nil)
@@ -366,5 +367,3 @@ you should place your code here."
 
 (global-set-key (kbd "s-d") 'duplicate-current-line-or-region)
 
-;; restman dev package
-(quelpa '(restman :fetcher github :repo "lbs8901/restman"))
