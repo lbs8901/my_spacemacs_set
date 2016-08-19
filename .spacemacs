@@ -261,112 +261,123 @@ you should place your code here."
   ;; (quelpa '(restman :fetcher github :repo "lbs8901/restman"))
   ;; (require 'restman)
 
-  (quelpa '(phpdocgen :fetcher github :repo "lbs8901/phpdocgen") :stable t)
+  ;; (quelpa '(phpdocgen :fetcher github :repo "lbs8901/phpdocgen") :stable t)
+  ;;
+
+  ;; (quelpa '(restman :fetcher file :path "/Users/mp/source/restman/restman.el" :update t))
+  ;; (require 'restman)
+
+  ;; backup, auto save disable
+  (setq make-backup-files nil)
+  (setq auto-save-default nil)
+  (setq create-lockfiles nil)
+
+  ;; word-wrap
+  (setq-default truncate-lines t)
+
+  ;; scroll
+  (setq scroll-step           1
+        scroll-conservatively 10000)
+
+  ;; tab unindent set
+  (global-set-key (kbd "<backtab>") 'un-indent-by-removing-4-spaces)
+  (defun un-indent-by-removing-4-spaces ()
+    "remove 4 spaces from beginning of of line"
+    (interactive)
+    (save-excursion
+      (save-match-data
+        (beginning-of-line)
+        ;; get rid of tabs at beginning of line
+        (when (looking-at "^\\s-+")
+          (untabify (match-beginning 0) (match-end 0)))
+        (when (looking-at "^    ")
+          (replace-match "")))))
+
+
+  ;; shift legion
+  (defun shift-region (distance)
+    (let ((mark (mark)))
+      (save-excursion
+        (indent-rigidly (region-beginning) (region-end) distance)
+        (push-mark mark t t)
+        ;; Tell the command loop not to deactivate the mark
+        ;; for transient mark mode
+        (setq deactivate-mark nil))))
+
+  (defun shift-right ()
+    (interactive)
+    (shift-region 4))
+  ;; (indent-rigidly-right-to-tab-stop))
+
+  (defun shift-left ()
+    (interactive)
+    (shift-region -4))
+  ;; (indent-rigidly-left-to-tab-stop))
+
+  (global-set-key [C-S-right] 'shift-right)
+  (global-set-key [C-S-left] 'shift-left)
+
+  ;; tab to stop
+  (custom-set-variables
+   '(tab-stop-list
+     (quote
+      (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)))
+   )
+
+  ;; redisplay
+  (setq redisplay-dont-pause t)
+
+  ;; s-left, s-right
+  (define-key global-map (kbd "s-<left>")     'beginning-of-line-text)
+  (define-key global-map (kbd "s-<right>")    'end-of-line)
+  (define-key global-map (kbd "s-<up>")       'scroll-down)
+  (define-key global-map (kbd "s-<down>")     'scroll-up)
+
+  (defun custom-indent-newline ()
+    (interactive)
+    (default-indent-new-line)
+    (indent-relative)
+    )
+
+  ;; RET indent
+  (define-key global-map (kbd "RET") 'default-indent-new-line)
+  (global-set-key (kbd "<C-return>") 'custom-indent-newline)
+
+  ;; search set
+  (global-set-key (kbd "C-F") 'helm-projectile-ag)
+  (global-set-key (kbd "C-x C-f") 'helm-for-files)
+  (global-set-key (kbd "C-,") 'helm-projectile)
+
+  ;; duplicate line
+  (defun duplicate-current-line-or-region (arg)
+    (interactive "p")
+    (let (beg end (origin (point)))
+      (if (and mark-active (> (point) (mark)))
+          (exchange-point-and-mark))
+      (setq beg (line-beginning-position))
+      (if mark-active
+          (exchange-point-and-mark))
+      (setq end (line-end-position))
+      (let ((region (buffer-substring-no-properties beg end)))
+        (dotimes (i arg)
+          (goto-char end)
+          (newline)
+          (insert region)
+          (setq end (point)))
+        (goto-char (+ origin (* (length region) arg) arg)))))
+
+  (global-set-key (kbd "s-d") 'duplicate-current-line-or-region)
+
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+  (setq web-mode-block-padding 0)
+  (setq web-mode-style-padding 0)
+  (setq web-mode-script-padding 0)
+
+  (add-hook 'restclient-response-loaded-hook 'json-mode-beautify)
+
 
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-
-;; backup, auto save disable
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-(setq create-lockfiles nil)
-
-;; word-wrap
-(setq-default truncate-lines t)
-
-;; scroll
-(setq scroll-step           1
-      scroll-conservatively 10000)
-
-;; tab unindent set
-(global-set-key (kbd "<backtab>") 'un-indent-by-removing-4-spaces)
-(defun un-indent-by-removing-4-spaces ()
-  "remove 4 spaces from beginning of of line"
-  (interactive)
-  (save-excursion
-    (save-match-data
-      (beginning-of-line)
-      ;; get rid of tabs at beginning of line
-      (when (looking-at "^\\s-+")
-        (untabify (match-beginning 0) (match-end 0)))
-      (when (looking-at "^    ")
-        (replace-match "")))))
-
-
-;; shift legion
-(defun shift-region (distance)
-  (let ((mark (mark)))
-    (save-excursion
-      (indent-rigidly (region-beginning) (region-end) distance)
-      (push-mark mark t t)
-      ;; Tell the command loop not to deactivate the mark
-      ;; for transient mark mode
-      (setq deactivate-mark nil))))
-
-(defun shift-right ()
-  (interactive)
-  (shift-region 4))
-  ;; (indent-rigidly-right-to-tab-stop))
-
-(defun shift-left ()
-  (interactive)
-  (shift-region -4))
-  ;; (indent-rigidly-left-to-tab-stop))
-
-(global-set-key [C-S-right] 'shift-right)
-(global-set-key [C-S-left] 'shift-left)
-
-;; tab to stop
-(custom-set-variables
- '(tab-stop-list
-   (quote
-    (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)))
- )
-
-;; redisplay
-(setq redisplay-dont-pause t)
-
-;; s-left, s-right
-(define-key global-map (kbd "s-<left>")     'beginning-of-line-text)
-(define-key global-map (kbd "s-<right>")    'end-of-line)
-(define-key global-map (kbd "s-<up>")       'scroll-down)
-(define-key global-map (kbd "s-<down>")     'scroll-up)
-
-(defun custom-indent-newline ()
-  (interactive)
-  (default-indent-new-line)
-  (indent-relative)
-  )
-
-;; RET indent
-(global-set-key (kbd "RET") 'default-indent-new-line)
-(global-set-key (kbd "<C-return>") 'custom-indent-newline)
-
-;; search set
-(global-set-key (kbd "C-F") 'helm-projectile-ag)
-(global-set-key (kbd "C-x C-f") 'helm-for-files)
-(global-set-key (kbd "C-,") 'helm-projectile)
-
-;; duplicate line
-(defun duplicate-current-line-or-region (arg)
-  (interactive "p")
-  (let (beg end (origin (point)))
-    (if (and mark-active (> (point) (mark)))
-        (exchange-point-and-mark))
-    (setq beg (line-beginning-position))
-    (if mark-active
-        (exchange-point-and-mark))
-    (setq end (line-end-position))
-    (let ((region (buffer-substring-no-properties beg end)))
-      (dotimes (i arg)
-        (goto-char end)
-        (newline)
-        (insert region)
-        (setq end (point)))
-      (goto-char (+ origin (* (length region) arg) arg)))))
-
-(global-set-key (kbd "s-d") 'duplicate-current-line-or-region)
-
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
