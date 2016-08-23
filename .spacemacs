@@ -376,6 +376,10 @@ you should place your code here."
 
   (add-hook 'restclient-response-loaded-hook 'json-mode-beautify)
 
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
 
 )
 
