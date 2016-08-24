@@ -379,6 +379,11 @@ you should place your code here."
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+  
+  (setenv "DOCKER_TLS_VERIFY" "1")
+  (setenv "DOCKER_HOST" "tcp://192.168.99.100:2376")
+  (setenv "DOCKER_CERT_PATH" "~/.docker/machine/machines/dev")
+  (setenv "DOCKER_MACHINE_NAME" "dev")
 
 
 )
