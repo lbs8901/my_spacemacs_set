@@ -382,7 +382,7 @@ you should place your code here."
   
   (setenv "DOCKER_TLS_VERIFY" "1")
   (setenv "DOCKER_HOST" "tcp://192.168.99.100:2376")
-  (setenv "DOCKER_CERT_PATH" "~/.docker/machine/machines/dev")
+  (setenv "DOCKER_CERT_PATH" (concat (getenv "HOME") "/.docker/machine/machines/dev"))
   (setenv "DOCKER_MACHINE_NAME" "dev")
 
 
