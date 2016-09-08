@@ -344,7 +344,7 @@ you should place your code here."
   (global-set-key (kbd "<C-return>") 'custom-indent-newline)
 
   ;; search set
-  (global-set-key (kbd "C-F") 'helm-projectile-ag)
+  ;; (global-set-key (kbd "C-F") 'helm-projectile-ag)
   (global-set-key (kbd "C-x C-f") 'helm-for-files)
   (global-set-key (kbd "C-,") 'helm-projectile)
 
@@ -379,11 +379,49 @@ you should place your code here."
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-  
+
   (setenv "DOCKER_TLS_VERIFY" "1")
   (setenv "DOCKER_HOST" "tcp://192.168.99.100:2376")
   (setenv "DOCKER_CERT_PATH" (concat (getenv "HOME") "/.docker/machine/machines/dev"))
   (setenv "DOCKER_MACHINE_NAME" "dev")
+
+
+  (defun eshell/dev-www ()
+    (insert "/ssh:pang@121.78.127.55#1229:/home/pang/www.edupang.com/")
+    (eshell-send-input)
+    )
+
+  (defun eshell/dev-adm ()
+    (insert "/ssh:pang@121.78.127.55#1229:/home/pang/adm.edupang.com/")
+    (eshell-send-input)
+    )
+
+  (defun eshell/dev-partner ()
+    (insert "/ssh:pang@121.78.127.55#1229:/home/pang/partner.edupang.com/")
+    (eshell-send-input)
+    )
+
+  (defun eshell/dev-mobile ()
+    (insert "/ssh:pang@121.78.127.55#1229:/home/pang/m.edupang.com/")
+    (eshell-send-input)
+    )
+
+  (defun eshell/live-www1 (last_ip)
+    (let (remoteHost))
+    (setq remoteHost (format "/ssh:pang@121.78.127.%s#1229:/home/pang/www.edupang.com/" last_ip))
+    (insert remoteHost)
+    (eshell-send-input)
+    )
+
+  (defun eshell/live-btob ()
+    (insert "/ssh:btob@121.78.127.56#1229:/home/btob/b2b.edupang.com/")
+    (eshell-send-input)
+    )
+
+  ;; (defun edupang_www ()
+  ;;   (interactive)
+  ;;   (find-file "/ssh:pang@121.78.127.55#1229:/home/pang/www.edupang.com/")
+  ;;   )
 
 
 )
