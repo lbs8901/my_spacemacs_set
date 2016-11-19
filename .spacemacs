@@ -32,6 +32,8 @@ values."
      markdown
      org
      javascript
+     (typescript :variables
+                        typescript-fmt-on-save t)
      html
      sql
      gtags
