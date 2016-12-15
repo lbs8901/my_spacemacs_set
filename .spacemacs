@@ -43,14 +43,14 @@ values."
      ;;spell-checking
      syntax-checking
      version-control
-     dockerfile
+     ;;docker
      restclient
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(sx)
+   dotspacemacs-additional-packages '(sx mmm-mode (vue-mode :location (recipe :fetcher github :repo "codefalling/vue-mode")))
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -84,7 +84,7 @@ values."
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
    dotspacemacs-editing-style 'emacs
-   ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
+   ;s; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
@@ -398,9 +398,7 @@ you should place your code here."
   (setq-default indent-tabs-mode nil)
   (setq tab-width 4) ; or any other preferred value
 
-  (add-to-list 'auto-mode-alist '("/protected/views/.*\\.php\\'" . web-mode))
-
-
+  ;; (add-to-list 'auto-mode-alist '("/protected/views/\\.php\\'" . web-mode))
 
 )
 
